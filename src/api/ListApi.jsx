@@ -2,9 +2,8 @@ import apiClient from "./apiClient"
 
 const url = "/thongke/"
 const list = {
-    getAll(params) {
-        console.log(apiClient.get(url, { params }))
-        return apiClient.get(url, { params })
+    getAll(val) {
+        return apiClient.get(url, { params: { title: val } })
     }
 }
 export default list
