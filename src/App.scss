@@ -1,0 +1,111 @@
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+#root {
+    background: rgba(15, 15, 15, 0.9);
+    height: 100vh
+}
+
+body {
+    font-family: roboto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    position: relative;
+    z-index: 0;
+    margin: 0px;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px 15px;
+}
+
+.title {
+    margin: 0px 0px 15px 0px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFF;
+    font-weight: 600;
+    padding-top: 15px;
+    font-size: 50px;
+    border-bottom: 3px solid #FFF;
+}
+
+.MuiIcon-root.icon-star,
+.MuiIcon-root.icon-chicken {
+    width: 2em;
+    height: 2em;
+}
+
+.MuiIcon-root {
+    &.icon-star {
+        color: #ffff00;
+    }
+
+    &.icon-star,
+    &.icon-chicken {
+        width: 2em;
+        height: 2em;
+    }
+
+    &.icon-star svg,
+    &.icon-chicken img {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.MuiFormControl-root.search-title {
+    & .MuiInputBase-input {
+        color: #000;
+        background: #FFF;
+    }
+
+    & .MuiInputLabel-root {
+        color: #000;
+    }
+
+    & label.Mui-focused {
+        color: #FFF;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 5px;
+        padding: 0px 5px;
+    }
+
+    & .MuiInput-underline:after {
+        border-bottom-color: #FFF;
+    }
+
+    & .MuiOutlinedInput-root {
+        & fieldset {
+            border-color: #FFF;
+            color: #FFF
+        }
+
+        &:hover fieldset {
+            border-color: #FFF,
+        }
+
+        &.Mui-focused fieldset {
+            border-color: #FFF,
+        }
+    }
+}
+
+@media (min-width: 1028) {
+    .container {
+        max-width: 988px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        max-width: 1200px;
+    }
+
+}

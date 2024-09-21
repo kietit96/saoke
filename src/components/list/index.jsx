@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
 import { PropTypes } from "prop-types";
 import list from "../../api/ListApi";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-
-const columns = [{ field: "id", headerName: "ID", width: "10%", color: "#FFF" },
+import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import "./style.scss"
+const columns = [{ field: "id", headerName: "ID", width: "8%", color: "#FFF" },
 {
     field: "date_time",
     headerName: "Ngày giao dịch",
     width: "15%"
 },
-{ field: "credit", headerName: "Số tiền giao dịch", width: "20%" },
-{ field: "detail", headerName: "Nội dung giao dịch", width: "55%" }]
+{ field: "credit", headerName: "Số tiền giao dịch", width: "18%" },
+{ field: "detail", headerName: "Nội dung giao dịch", width: "35%" },
+{ field: "note", headerName: "Ghi chú", width: "24%" }]
 ListSaoKe.propTypes = {
-    value2: PropTypes.string
+    value2: PropTypes.string,
+    btnEditNote: PropTypes.func
 }
-export default function ListSaoKe({ value2 }) {
+export default function ListSaoKe({ value2, btnEditNote }) {
     const [listThongke, setListThongke] = useState([])
     useEffect(() => {
-        if (value2 === 0) {
+        if (value2 === "") {
             setListThongke([])
             return
         }
@@ -62,20 +65,21 @@ export default function ListSaoKe({ value2 }) {
         return date_time.substring(0, date_time.indexOf("_"))
     }
     return (
-        <TableContainer sx={{ maxHeight: "75vh" }}>
+        <TableContainer sx={{ minHeight: "70vh", maxHeight: "70vh" }}>
             <Table>
                 <TableHead>
                     <TableRow>
-                        {columns.map((col, indx) => (<TableCell sx={{ color: "#FFF", fontWeight: "800", width: col.width }} key={indx}>{col.headerName}</TableCell>))}
+                        {columns.map((col, indx) => (<TableCell sx={{ width: { lg: col.width } }} key={indx}>{col.headerName}</TableCell>))}
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {listThongke?.map((val, indx) => (
                         <TableRow key={indx}>
-                            <TableCell sx={{ color: "#FFF" }}>{val.id}</TableCell>
-                            <TableCell sx={{ color: "#FFF" }}>{getDate(val.date_time)}</TableCell>
-                            <TableCell sx={{ color: "#FFF" }}>{`${formatMoney(val.credit)} VNĐ`}</TableCell>
-                            <TableCell sx={{ color: "#FFF" }}>{val.detail}</TableCell>
+                            <TableCell>{val.id}</TableCell>
+                            <TableCell>{getDate(val.date_time)}</TableCell>
+                            <TableCell>{`${formatMoney(val.credit)} VNĐ`}</TableCell>
+                            <TableCell>{val.detail}</TableCell>
+                            <TableCell>{val.note} <Button onClick={() => { btnEditNote(val.id, val.note) }} variant="contained"><EditRoundedIcon></EditRoundedIcon> </Button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
