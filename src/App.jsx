@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import ListSaoKe from './components/list'
-import { TextField } from '@mui/material'
+import { styled, TextField } from '@mui/material'
 import './App.css'
 import "@fontsource/roboto"
 function App() {
@@ -15,32 +15,37 @@ function App() {
     }, 1000)
     return () => { clearTimeout(timeOut) }
   }, [title])
-  const styleTextField = {
-    "& .MuiInputBase-input": {
-      color: "#FFF" // input color
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "#FFF"  // border color
-      },
-      "&:hover fieldset": {
-        borderColor: "#FFF" // border color when hover
-      },
-      '& .Mui-focused fieldset': {
-        borderColor: '#FFF', // Border color when focused
-      },
+  const CssTextField = {
+    '& .MuiInputBase-input': {
+      color: "#FFF"
     },
     '& .MuiInputLabel-root': {
-      color: '#FFF', // Label color
+      color: "#FFF"
     },
-    '& .MuiInputLabel-root.Mui-focused': {
-      color: '#FFF', // Label color when focused
+    '& label.Mui-focused': {
+      color: '#FFF',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#fff',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#FFF',
+        color: "#FFF"
+      },
+      '&:hover fieldset': {
+        borderColor: '#FFF',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#FFF',
+      },
     },
   }
+
   return (
     <div className='container'>
       <h2 className='title'>Sao kê</h2>
-      <TextField sx={styleTextField} fullWidth margin='dense' onKeyUp={pressKeyBoard} id="search-input" label="Tìm kiếm " />
+      <TextField sx={CssTextField} autoComplete='off' fullWidth margin='dense' onKeyUp={pressKeyBoard} id="search-input" label="Tìm kiếm " />
       <ListSaoKe value2={deboundTitle} />
     </div>
   )
