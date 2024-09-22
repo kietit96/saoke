@@ -36,8 +36,8 @@ body {
     border-bottom: 3px solid #FFF;
 }
 
-.MuiIcon-root.icon-star,
-.MuiIcon-root.icon-chicken {
+.MuiIcon-root .icon-star,
+.MuiIcon-root .icon-chicken {
     width: 2em;
     height: 2em;
 }
