@@ -10,7 +10,7 @@
 }
 
 body {
-    font-family: roboto;
+    font-family: "Roboto";
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
@@ -26,14 +26,26 @@ body {
 }
 
 .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0px 0px 15px 0px;
-    text-align: center;
+    padding-top: 15px;
     text-transform: uppercase;
     color: #FFF;
-    font-weight: 600;
-    padding-top: 15px;
-    font-size: 50px;
     border-bottom: 3px solid #FFF;
+    font-family: "Montserrat";
+    font-weight: 800;
+    font-size: 50px;
+    gap: 5px;
+
+    & .line {
+        display: block;
+        width: 25px;
+        background: #FFF;
+        height: 10px;
+
+    }
 }
 
 .MuiIcon-root {

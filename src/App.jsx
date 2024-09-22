@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useState } from 'react'
-import ListSaoKe from './components/ListThongke'
-import { Icon, TextField } from '@mui/material'
-import chicken from "./assets/chicken.png"
-import './App.scss'
-import "@fontsource/roboto"
+import { useCallback, useEffect, useState } from 'react';
+import ListSaoKe from './components/ListThongke';
+import { Icon, TextField } from '@mui/material';
+import chicken from './assets/chicken.png';
+import './App.scss';
+import '@fontsource/roboto';
 import SearchIcon from '@mui/icons-material/Search';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
-import FormDialog from './components/ModalEdit'
+import FormDialog from './components/ModalEdit';
 function App() {
   const [title, setTitle] = useState("")
   const [deboundTitle, setDeboundTitle] = useState("")
@@ -39,7 +39,7 @@ function App() {
   }
   return (
     <div className='container'>
-      <h2 className='title'><Icon className="icon-star"><StarRoundedIcon /></Icon> Sao kê 4.0 <Icon className="icon-chicken"><img src={chicken} /></Icon></h2>
+      <h2 className='title'><Icon className="icon-star"><StarRoundedIcon /></Icon><span className="line"></span>Sao kê 4.0<span className="line"></span><Icon className="icon-chicken"><img src={chicken} /></Icon></h2>
       <TextField className="search-title" autoComplete='off' fullWidth margin='dense' onKeyUp={pressKeyBoard} id="search-input" label={<><SearchIcon /> Tìm kiếm</>} />
       <ListSaoKe note_content={noteChange} note_id={idNoteChange} btnEditNote={btnEditNote} value2={deboundTitle} />
       <FormDialog handleChangeValue={changeValue} handleClose={handleCloseModal} open={stateOpenDialog} item_id={id} note={note} />
