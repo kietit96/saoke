@@ -2,7 +2,6 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { PropTypes } from 'prop-types'
 import { useForm } from 'react-hook-form';
@@ -22,12 +21,12 @@ export default function FormDialog(props) {
             note: ""
         },
     })
-    useEffect(()=>{
-        form.setValue("note",note)
-    },[note, form])
+    useEffect(() => {
+        form.setValue("note", note)
+    }, [note, form])
     const editNote = (data) => {
-        const {handleChangeValue} = props
-        handleChangeValue(item_id,data.note)
+        const { handleChangeValue } = props
+        handleChangeValue(item_id, data.note)
         list.setNote(item_id, data.note)
         handleClose()
     }
