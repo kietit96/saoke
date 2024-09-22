@@ -12,7 +12,8 @@ FormDialog.propTypes = {
     open: PropTypes.bool,
     item_id: PropTypes.string,
     note: PropTypes.string,
-    handleClose: PropTypes.func
+    handleClose: PropTypes.func,
+    handleChangeValue: PropTypes.func
 }
 export default function FormDialog(props) {
     const { open, item_id, note, handleClose } = props
@@ -26,7 +27,9 @@ export default function FormDialog(props) {
     }, [note, form])
     const editNote = (data) => {
         const { handleChangeValue } = props
-        handleChangeValue(item_id, data.note)
+        if (handleChangeValue) {
+            handleChangeValue(item_id, data.note)
+        }
         list.setNote(item_id, data.note)
         handleClose()
     }

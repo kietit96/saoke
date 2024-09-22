@@ -3,7 +3,7 @@ import { PropTypes } from "prop-types";
 import list from "../../api/ListApi";
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import "./style.css"
+import "./style.scss"
 const columns = [{ field: "id", headerName: "ID", width: "8%", color: "#FFF" },
 {
     field: "date_time",
@@ -15,7 +15,9 @@ const columns = [{ field: "id", headerName: "ID", width: "8%", color: "#FFF" },
 { field: "note", headerName: "Ghi chú", width: "24%" }]
 ListSaoKe.propTypes = {
     value2: PropTypes.string,
-    btnEditNote: PropTypes.func
+    note_id: PropTypes.string,
+    note_content: PropTypes.string,
+    btnEditNote: PropTypes.func,
 }
 export default function ListSaoKe({ value2, btnEditNote, note_id, note_content }) {
     const [listThongke, setListThongke] = useState([])
@@ -40,9 +42,6 @@ export default function ListSaoKe({ value2, btnEditNote, note_id, note_content }
             getListSaoKe()
         }
     }, [value2])
-    useEffect(() => {
-        console.log(note_id, note_content)
-    })
     function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
         try {
             decimalCount = Math.abs(decimalCount);

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import ListSaoKe from './components/ListThongke'
 import { Icon, TextField } from '@mui/material'
 import chicken from "./assets/chicken.png"
-import './App.css'
+import './App.scss'
 import "@fontsource/roboto"
 import SearchIcon from '@mui/icons-material/Search';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
