@@ -1,60 +1,49 @@
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types'
+import { useForm } from 'react-hook-form';
+import FieldControl from '../form-control/FieldControl';
+import list from '../../api/ListApi';
+import { useEffect } from 'react';
 FormDialog.propTypes = {
-    state: PropTypes.bool
+    open: PropTypes.bool,
+    item_id: PropTypes.string,
+    note: PropTypes.string,
+    handleClose: PropTypes.func
 }
 export default function FormDialog(props) {
-    const { state } = props
-    const [open, setOpen] = useState(state);
-
-    const handleClose = () => {
-        //setOpen(false);
-    }
-    useEffect(() => {
-        console.log(open)
+    const { open, item_id, note, handleClose } = props
+    const form = useForm({
+        defaultValues: {
+            note: ""
+        },
     })
+    useEffect(()=>{
+        form.setValue("note",note)
+    },[note, form])
+    const editNote = (data) => {
+        const {handleChangeValue} = props
+        handleChangeValue(item_id,data.note)
+        list.setNote(item_id, data.note)
+        handleClose()
+    }
     return (
         <>
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                PaperProps={{
-                    component: 'form',
-                    onSubmit: (event) => {
-                        event.preventDefault();
-                        handleClose();
-                    },
-                }}
-            >
-                <DialogTitle>Subscribe</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        To subscribe to this website, please enter your email address here. We
-                        will send updates occasionally.
-                    </DialogContentText>
-                    <TextField
-                        autoFocus
-                        required
-                        margin="dense"
-                        id="name"
-                        name="email"
-                        label="Email Address"
-                        type="email"
-                        fullWidth
-                        variant="standard"
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button type="submit">Subscribe</Button>
-                </DialogActions>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Chỉnh sửa ghi chú</DialogTitle>
+                <form onSubmit={form.handleSubmit(editNote)}>
+                    <DialogContent>
+                        <FieldControl type="text" name="note" label="Sửa ghi chú" form={form}></FieldControl>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose}>Cancel</Button>
+                        <Button type="submit" variant='contained'>Chỉnh sửa</Button>
+                    </DialogActions>
+                </form>
             </Dialog>
         </>
     )

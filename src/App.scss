@@ -67,14 +67,15 @@ body {
     }
 
     & .MuiInputLabel-root {
-        color: #000;
+        color: #000
     }
 
-    & label.Mui-focused {
+    & label.Mui-focused,
+    & label.MuiFormLabel-filled {
         color: #FFF;
         background: rgba(0, 0, 0, 0.6);
-        border-radius: 5px;
         padding: 0px 5px;
+        border-radius: 5px;
     }
 
     & .MuiInput-underline:after {

@@ -17,7 +17,7 @@ ListSaoKe.propTypes = {
     value2: PropTypes.string,
     btnEditNote: PropTypes.func
 }
-export default function ListSaoKe({ value2, btnEditNote }) {
+export default function ListSaoKe({ value2, btnEditNote, note_id, note_content }) {
     const [listThongke, setListThongke] = useState([])
     useEffect(() => {
         if (value2 === "") {
@@ -40,6 +40,9 @@ export default function ListSaoKe({ value2, btnEditNote }) {
             getListSaoKe()
         }
     }, [value2])
+    useEffect(()=>{
+        console.log(note_id, note_content)
+    })
     function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
         try {
             decimalCount = Math.abs(decimalCount);
@@ -79,7 +82,7 @@ export default function ListSaoKe({ value2, btnEditNote }) {
                             <TableCell>{getDate(val.date_time)}</TableCell>
                             <TableCell>{`${formatMoney(val.credit)} VNĐ`}</TableCell>
                             <TableCell>{val.detail}</TableCell>
-                            <TableCell>{val.note} <Button onClick={() => { btnEditNote(val.id, val.note) }} variant="contained"><EditRoundedIcon></EditRoundedIcon> </Button></TableCell>
+                            <TableCell><Button sx={{ minWidth:"auto", padding: "5px" }} onClick={() => btnEditNote(val.id, val.note)} variant="contained"><EditRoundedIcon/></Button> {val.id*1 === note_id*1&&note_id!=="" ? note_content : val.note}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
