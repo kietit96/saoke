@@ -3,7 +3,7 @@ import { PropTypes } from "prop-types";
 import list from "../../api/ListApi";
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
-import "./style.scss"
+import "./style.css"
 const columns = [{ field: "id", headerName: "ID", width: "8%", color: "#FFF" },
 {
     field: "date_time",
@@ -40,7 +40,7 @@ export default function ListSaoKe({ value2, btnEditNote, note_id, note_content }
             getListSaoKe()
         }
     }, [value2])
-    useEffect(()=>{
+    useEffect(() => {
         console.log(note_id, note_content)
     })
     function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
@@ -82,7 +82,7 @@ export default function ListSaoKe({ value2, btnEditNote, note_id, note_content }
                             <TableCell>{getDate(val.date_time)}</TableCell>
                             <TableCell>{`${formatMoney(val.credit)} VNĐ`}</TableCell>
                             <TableCell>{val.detail}</TableCell>
-                            <TableCell><Button sx={{ minWidth:"auto", padding: "5px" }} onClick={() => btnEditNote(val.id, val.note)} variant="contained"><EditRoundedIcon/></Button> {val.id*1 === note_id*1&&note_id!=="" ? note_content : val.note}</TableCell>
+                            <TableCell><Button sx={{ minWidth: "auto", padding: "5px" }} onClick={() => btnEditNote(val.id, val.note)} variant="contained"><EditRoundedIcon /></Button> {val.id * 1 === note_id * 1 && note_id !== "" ? note_content : val.note}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

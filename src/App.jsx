@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import ListSaoKe from './components/List'
 import { Icon, TextField } from '@mui/material'
 import chicken from "./assets/chicken.png"
-import './App.scss'
+import './App.css'
 import "@fontsource/roboto"
 import SearchIcon from '@mui/icons-material/Search';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
@@ -22,17 +22,17 @@ function App() {
   }, [title])
   const [id, setId] = useState("")
   const [note, setNote] = useState("")
-  const [idNoteChange,setIdNoteChange] = useState("")
+  const [idNoteChange, setIdNoteChange] = useState("")
   const [noteChange, setNoteChange] = useState("")
   const btnEditNote = (id, note_content) => {
     setId(id)
     setNote(note_content)
     setOpenDialog(true)
   }
-  const handleCloseModal = () =>{
+  const handleCloseModal = () => {
     setOpenDialog(false)
   }
-  const changeValue = (id, note_content)=>{
+  const changeValue = (id, note_content) => {
     setNoteChange(note_content)
     setIdNoteChange(id)
 
